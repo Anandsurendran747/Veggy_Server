@@ -15,6 +15,9 @@ const CartSchema = new Mongoose.Schema(
             type: Number,
             require: true
         },
+        count:{
+            type:Number
+        },
         image: {
             type: String,
         },

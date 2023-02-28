@@ -34,6 +34,15 @@ router.post('/addToCart', async (req, res) => {
     }
 })
 
+router.post('/cartItemcount',async (req,res)=>{
+    try {
+        const cartItem= await Cart.findByIdAndUpdate(req.body.id,{count:req.body.count});
+        res.status(200).json(cartItem);
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+})
+
 router.post('/login', async (req, res) => {
     try {
         const user = await User.findOne({ email: req.body.email });
