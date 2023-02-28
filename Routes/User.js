@@ -58,4 +58,13 @@ router.post('/registerUser', async (req, res) => {
         res.status(500).json({ error });
     }
 })
+
+router.post('/removeCartItem',async(req,res)=>{
+    try {
+        const cartitem=await Cart.findByIdAndDelete(req.body.id);
+        res.status(200).json(cartitem);
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+})
 module.exports = router;
