@@ -7,6 +7,10 @@ const CartSchema = new Mongoose.Schema(
             type: Object,
             required:true
         },
+        itemId:{
+            type:String,
+            require:true
+        },
         name: {
             type: String,
             require: true,
