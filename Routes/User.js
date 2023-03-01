@@ -44,7 +44,7 @@ router.post('/cartItemcount',async (req,res)=>{
             count=1;
         }
         console.log(count);
-        const cartItem= await Cart.findOneAndUpdate({itemId:req.body.id},{count:count+req.body.count,price:price*(req.body.count)});
+        const cartItem= await Cart.findOneAndUpdate({itemId:req.body.id},{count:count+req.body.count,price:price*(req.body.count+count)});
         res.status(200).json(cartItem);
     } catch (error) {
         res.status(500).json({ error });
