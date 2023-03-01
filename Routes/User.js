@@ -39,11 +39,12 @@ router.post('/cartItemcount',async (req,res)=>{
         const c=await Cart.findOne({itemId:req.body.id});
         console.log(this.checkout);
         var count=c.count;
+        var price=c.price/count;
         if (!c.count) {
             count=1;
         }
         console.log(count);
-        const cartItem= await Cart.findOneAndUpdate({itemId:req.body.id},{count:count+req.body.count});
+        const cartItem= await Cart.findOneAndUpdate({itemId:req.body.id},{count:count+req.body.count,price:price*(req.body.count)});
         res.status(200).json(cartItem);
     } catch (error) {
         res.status(500).json({ error });
