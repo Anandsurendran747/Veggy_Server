@@ -36,13 +36,13 @@ router.post('/addToCart', async (req, res) => {
 
 router.post('/cartItemcount',async (req,res)=>{
     try {
-        const c=await Cart.findById(req.body.id);
+        const c=await Cart.findOne({itemId:req.body.id});
         var count=c.count;
         if (!c.count) {
             count=1;
         }
         console.log(count);
-        const cartItem= await Cart.findByIdAndUpdate(req.body.id,{count:count+1});
+        const cartItem= await Cart.findOneAndUpdate({itemId:req.body.id},{count:count+1});
         res.status(200).json(cartItem);
     } catch (error) {
         res.status(500).json({ error });
